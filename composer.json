@@ -1,0 +1,24 @@
+{
+    "name": "php-decimal/laravel",
+    "description": "Laravel integration package for decimal support",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rudi Theunissen",
+            "email": "rtheunissen@php.net"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "php-decimal/php-decimal": "^0.0.1"
+    },
+    "autoload": {
+        "psr4": {
+            "Decimal\\": "src"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    }
+}
