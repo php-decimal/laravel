@@ -1,0 +1,63 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "7a2203c1a94f88161496a3f78a8387e4",
+    "packages": [
+        {
+            "name": "php-decimal/php-decimal",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-decimal/php-decimal.git",
+                "reference": "9af91249e63f8f847cb85e1947d8a1da1a7b72a6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-decimal/php-decimal/zipball/9af91249e63f8f847cb85e1947d8a1da1a7b72a6",
+                "reference": "9af91249e63f8f847cb85e1947d8a1da1a7b72a6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-decimal": "^1.0.0",
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Decimal\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rudi Theunissen",
+                    "email": "rtheunissen@php.net"
+                }
+            ],
+            "description": "Correctly-rounded arbitrary precision decimal floating point",
+            "keywords": [
+                "decimal",
+                "math",
+                "number",
+                "precision"
+            ],
+            "time": "2018-10-28T22:33:05+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.0.0"
+    },
+    "platform-dev": []
+}
