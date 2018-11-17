@@ -43,6 +43,6 @@ if (!function_exists("decimal_avg")) {
      */
     function decimal_avg($values, int $precision = Decimal::DEFAULT_PRECISION): Decimal
     {
-        return Decimal::sum($values, $precision);
+        return Decimal::avg($values, $precision);
     }
 }
