@@ -17,7 +17,7 @@ if (!function_exists("decimal")) {
     }
 }
 
-if (!function_exists("decimal")) {
+if (!function_exists("is_decimal")) {
     /**
      * @return bool TRUE if the given value is a decimal, FALSE otherwise.
      */
@@ -27,7 +27,7 @@ if (!function_exists("decimal")) {
     }
 }
 
-if (!function_exists("decimal")) {
+if (!function_exists("decimal_sum")) {
     /**
      * @return \Decimal\Decimal The sum of all given values, calculated to $precision.
      */
@@ -37,12 +37,12 @@ if (!function_exists("decimal")) {
     }
 }
 
-if (!function_exists("decimal")) {
+if (!function_exists("decimal_avg")) {
     /**
      * @return \Decimal\Decimal The average of all given values, calculated to $precision.
      */
     function decimal_avg($values, int $precision = Decimal::DEFAULT_PRECISION): Decimal
     {
-        return Decimal::sum($values, $precision);
+        return Decimal::avg($values, $precision);
     }
 }
