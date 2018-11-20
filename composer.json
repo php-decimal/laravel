@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=7.0.0",
-        "php-decimal/php-decimal": "^1.0.0"
+        "php-decimal/php-decimal": "^1.1.0"
     },
     "autoload": {
         "psr-4": {
