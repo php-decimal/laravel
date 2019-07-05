@@ -24,8 +24,10 @@ trait DecimalObjectCast
      *
      * @return \Decimal\Decimal
      */
-    protected function asDecimal(Decimal $value, $decimals)
+    protected function asDecimal($value, $decimals)
     {
-        return $value->toFixed($decimals, false, PHP_ROUND_HALF_UP);
+        assert($value instanceof Decimal);
+        
+        return $value->toFixed($decimals, $commas = false, PHP_ROUND_HALF_UP);
     }
 }
