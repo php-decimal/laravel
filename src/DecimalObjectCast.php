@@ -8,26 +8,69 @@ namespace Decimal;
  * "decimal" cast uses `number_format`, but we can utilize the `toFixed` method
  * provided by Decimal\Decimal to prepare the value.
  *
- * This trait does not provide a cast from string to Decimal; this should be
- * done manually using an accessor like `getPriceAttribute`, which should return
- * a new Decimal\Decimal using the precision of the column in the database.
+ * This trait extends the default behavior by allowing the precision and scale
+ * of the decimal value to be specified via the attribute's casting definition.
+ * For example, `decimal:2:8` would cast the attribute to a Decimal with 2 digits
+ * of scale and 8 digits of precision.
  */
 trait DecimalObjectCast
 {
     /**
-     * Return a decimal as string to be written to the database.
+     * Cast an attribute to a native PHP type.
      *
-     * @see \Illuminate\Database\Eloquent\Concerns\HasAttributes::asDecimal
+     * @see \Illuminate\Database\Eloquent\Concerns\HasAttributes::castAttribute
      *
-     * @param  Decimal  $value
-     * @param  int      $decimals
+     * @param string $key
+     * @param mixed  $value Raw value
      *
-     * @return \Decimal\Decimal
+     * @return mixed Transformed value
      */
-    protected function asDecimal($value, $decimals)
+    public function castAttribute($key, $value)
     {
-        assert($value instanceof Decimal);
-        
-        return $value->toFixed($decimals, $commas = false, PHP_ROUND_HALF_UP);
+        if ($value !== null) {
+            $casts = $this->getCasts();
+            if (array_key_exists($key, $casts)) {
+                $castType = $casts[$key];
+                if ($this->isDecimalCast($castType)) {
+                    $precision = explode(':', $castType)[2] ?? Decimal::DEFAULT_PRECISION;
+
+                    return new Decimal($value, $precision);
+                }
+            }
+        }
+
+        return parent::castAttribute($key, $value);
+    }
+
+    /**
+     * Set a given attribute on the model.
+     *
+     * @see \Illuminate\Database\Eloquent\Concerns\HasAttributes::setAttribute
+     *
+     * @param string $key
+     * @param mixed  $value Raw value
+     *
+     * @return mixed The model
+     */
+    public function setAttribute($key, $value)
+    {
+        if ($value !== null) {
+            $casts = $this->getCasts();
+            if (array_key_exists($key, $casts)) {
+                $castType = $casts[$key];
+                if ($this->isDecimalCast($castType)) {
+                    if (!$value instanceof Decimal) {
+                        $value = $this->castAttribute($key, $value);
+                    }
+
+                    $decimals = explode(':', $castType)[1];
+                    $this->attributes[$key] = $value->toFixed($decimals, false, PHP_ROUND_HALF_UP);
+
+                    return $this;
+                }
+            }
+        }
+
+        return parent::setAttribute($key, $value);
     }
 }
