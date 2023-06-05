@@ -25,7 +25,7 @@ trait DecimalObjectCast
      *
      * @return mixed Transformed value
      */
-    protected function castAttribute($key, $value)
+    public function castAttribute($key, $value)
     {
         if ($value !== null) {
             $casts = $this->getCasts();
